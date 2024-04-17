@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@color/bplus_yellow_04"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginVertical="14dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/drawer_close"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"
+            />
+
+        <ImageView
+            android:id="@+id/bplus_logo"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_set"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/beforeLoginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bplus_button_yellow"
+            android:text="로그인"/>
+
+        <Button
+            android:id="@+id/registMember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bplus_button_yellow"
+            android:text="회원가입"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/afterLoginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/mypage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bplus_button_yellow"
+            android:text="마이페이지"/>
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bplus_button_yellow"
+            android:text="로그아웃"/>
+
+    </LinearLayout>
+</LinearLayout>
