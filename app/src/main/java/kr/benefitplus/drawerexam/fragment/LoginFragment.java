@@ -19,6 +19,7 @@ import kr.benefitplus.drawerexam.MainActivity;
 import kr.benefitplus.drawerexam.R;
 import kr.benefitplus.drawerexam.comm.AuthAPI;
 import kr.benefitplus.drawerexam.comm.NetworkClient;
+import kr.benefitplus.drawerexam.lib.BplusLib;
 import kr.benefitplus.drawerexam.lib.SessionManager;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +56,7 @@ public class LoginFragment  extends Fragment {
 
     public void login (String email, String password){
 
+        BplusLib bplusLib = new BplusLib(getActivity());
         Retrofit retrofit = NetworkClient.getRetrofitClient(getActivity());
         AuthAPI authAPI = retrofit.create(AuthAPI.class);
 
@@ -63,9 +65,10 @@ public class LoginFragment  extends Fragment {
         call.enqueue(new Callback<LoginRes>() {
             @Override
             public void onResponse(Call<LoginRes> call, Response<LoginRes> response) {
+
+                LoginRes loginRes = response.body();
                 if (response.isSuccessful()){
 
-                    LoginRes loginRes = response.body();
                     Log.d("Login Success ", loginRes.data.token.accessToken);
                     SessionManager sessionManager = new SessionManager(getActivity());
                     sessionManager.saveAuthToken(loginRes.data.token);
@@ -79,11 +82,25 @@ public class LoginFragment  extends Fragment {
                 }else{
                     String responseBodyString = response.errorBody().toString();
                     Log.d("Login Success ", responseBodyString);
+                    if (loginRes.result) {
+
+                        Log.d("Login Success ", String.valueOf(loginRes.result));
+                        SessionManager sessionManager = new SessionManager(getActivity());
+                        sessionManager.saveAuthToken(loginRes.data.token);
+
+                        MainActivity mainActivity = (MainActivity)getActivity();
+                        mainActivity.removeFragment();
+
+                    }else{
+                        BplusLib.msgDialog("로그인", loginRes.resultMsg);
+                        Log.d("Login false ", loginRes.resultMsg);
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<LoginRes> call, Throwable t) {
+                BplusLib.msgDialog("로그인", "로그인 오류, 잠시후 다시 진행하세요");
                 Log.d ("API", "authAPI.login Failure ..." + t.getMessage());
                 t.printStackTrace();
             }
